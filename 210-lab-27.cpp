@@ -31,15 +31,47 @@ int main() {
 
    do {
    cout << "\nMenu:\n"; // Display menu
-        cout << "1. Increase Friendship\n";
-        cout << "2. Decrease Friendship\n";
-        cout << "3. Search for Villager\n";
-        cout << "4. Exit\n";
+        cout << "1. Add Villager\n";
+        cout << "2. Delete Villager\n";
+        cout << "3. Increase Friendship\n";
+        cout << "4. Decrease Friendship\n";
+        cout << "5. Search for Villager\n";
+        cout << "6. Exit\n";
         cout << "Enter your choice: ";
         cin >> choice; 
 
         switch(choice) {
-            case 1: // Increasing friendship
+            case 1: { // Add villager
+                string species, catchphrase;
+                int level;
+                cout << "Villager name: ";
+                cin >> name;
+                cout << "Friendship level: ";
+                cin >> level;
+                cin.ignore(); // ignore leftover newline
+                cout << "Species: ";
+                cin >> species;
+                cin.ignore();
+                cout << "Catchphrase: ";
+                getline(cin, catchphrase);
+
+                villagerData[name] = make_tuple(level, species, catchphrase);
+                cout << name << " added.\n";
+                printVillagers(villagerData);
+                break;
+            }
+
+            case 2: { // Delete villager
+                cout << "Enter villager name to delete: ";
+                cin >> name;
+                if(villagerData.erase(name))
+                    cout << name << " deleted.\n";
+                else
+                    cout << name << " not found.\n";
+                printVillagers(villagerData);
+                break;
+            }
+            case 3: // Increasing friendship
                 cout << "Enter villager name: ";
                 cin >> name;
                  if (villagerData.find(name) != villagerData.end()) {
@@ -50,7 +82,7 @@ int main() {
                 }
                 printVillagers(villagerData);
                 break;
-            case 2: // Decreasing friendship
+            case 4: // Decreasing friendship
                  cout << "Enter villager name: ";
                 cin >> name;
                 if (villagerData.find(name) != villagerData.end()) {
@@ -62,7 +94,7 @@ int main() {
                 }
                 printVillagers(villagerData);
                 break;
-            case 3: // Searches for villager
+            case 5: // Searches for villager
                  cout << "Enter villager name: ";
                 cin >> name;
                 if (villagerData.find(name) != villagerData.end()) {
@@ -75,7 +107,7 @@ int main() {
                     cout << name << " not found.\n";
                 }
                 break;
-            case 4: // Exits program
+            case 6: // Exits program
                 cout << "Exiting program.\n";
                 break;
 
@@ -83,7 +115,7 @@ int main() {
                 cout << "Invalid choice. Try again.\n";
         }
 
-    } while(choice != 4);
+    } while(choice != 6);
         
           return 0;
 
