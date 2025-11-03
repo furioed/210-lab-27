@@ -1,6 +1,6 @@
 // COMSC-210 | Lab 27 | Mamadou Sissoko
 // IDE used: Visual Studio Code
-// Villager map
+// Villager map 
 
 #include <iostream>
 #include <map>
